@@ -1,0 +1,17 @@
+TRUNK
+-----
+
+SAFE 0.3
+--------
+* Change amount to float datatype (allow for billing of partial amounts, i.e. hours)
+
+SAFE 0.2
+--------
+* Bugfix to avoid multiple companies in one invoice (important!)
+* Clean up column names in listings
+* Adjust sorting options
+
+SAFE 0.1
+--------
+* Initial release
+

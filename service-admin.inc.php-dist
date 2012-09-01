@@ -1,0 +1,73 @@
+<?
+
+// Supplier data
+$companyname = "Foobar Inc.";
+$companybank = "12.34.56.789";
+$companytown = "Ducktown";
+$companyemail = "billing@nospam.spam";
+
+// Strings
+$NRC = 'Setup charge';
+$YRC = date('Y');
+$QRC = 'Q'.ceil(date('n')/3);
+$MRC = strtolower(date('F'));
+
+$strings["nl"]["attn"] = "T.a.v. ";
+$strings["en"]["attn"] = "Attn: ";
+$strings["nl"]["your"] = "Uw ";
+$strings["en"]["your"] = "Your ";
+$strings["nl"]["vatnr"] = "BTWnr: ";
+$strings["en"]["vatnr"] = "VATnr: ";
+$strings["nl"]["date"] = "Datum: ";
+$strings["en"]["date"] = "Date: ";
+$strings["nl"]["subject"] = "Betreft: Factuurnummer ";
+$strings["en"]["subject"] = "Subject: Invoicenumber ";
+$strings["nl"]["pretext"] = "Dit is uw factuur voor diensten geleverd door $companyname:";
+$strings["en"]["pretext"] = "This is the invoice for services rendered by $companyname:";
+$strings["nl"]["itemprice"] = "p/st";
+$strings["en"]["itemprice"] = "pc.";
+$strings["nl"]["linetotal"] = "Totaal";
+$strings["en"]["linetotal"] = "Total";
+$strings["nl"]["invtotal"] = "Totaal diensten";
+$strings["en"]["invtotal"] = "Services total";
+$strings["nl"]["vat"] = "BTW";
+$strings["en"]["vat"] = "VAT";
+$strings["nl"]["invoiceable"] = "Totaal factuurbedrag";
+$strings["en"]["invoiceable"] = "Amount due";
+$strings["nl"]["posttext"] = "Wij verzoeken u vriendelijk factuurbedrag binnen 14 dagen over te maken op onze rekening $companybank ten name van $companyname te $companytown, onder vermelding van het factuurnummer. Voor vragen over deze factuur kunt u email sturen naar $companyemail.";
+$strings["en"]["posttext"] = "We request payment of the invoice amount within 14 days to our account $companybank in the name of $companyname $companytown. Please note our invoice number with your payment. Questions about this invoice can be directed via email to $companyemail.";
+$strings["nl"]["signature"] = "Met vriendelijke groet,\n\n$companyname";
+$strings["en"]["signature"] = "Best regards,\n\n$companyname";
+
+$VATpct = 19;
+
+// MySQL host name, user name, password, database, and table
+$opts['hn'] = 'localhost';
+$opts['un'] = 'safe';
+$opts['pw'] = 'mysecret';
+$opts['db'] = 'safe';
+
+require('fpdf16/fpdf.php');
+define('EURO', chr(128));
+
+class PDF extends FPDF
+{
+//Page header
+function Header()
+{
+	// Not currently used
+}
+
+//Page footer
+function Footer()
+{
+    //Position at 1.5 cm from bottom
+    $this->SetY(-15);
+    //Arial italic 8
+    $this->SetFont('Arial','I',8);
+    //Page number
+    $this->Cell(0,10,$this->PageNo().'/{nb}',0,0,'C');
+}
+}
+
+?>

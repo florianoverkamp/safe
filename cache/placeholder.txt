@@ -1,0 +1,1 @@
+Your webserver should be able to write in this directory to allow caching WHOIS data
